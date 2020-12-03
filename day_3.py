@@ -50,9 +50,9 @@ def part_2(x_inc: int, y_inc: int):
 if __name__ == '__main__':
     part_1(3, 1)
     pt2_answer_list = []
-    slopes = {1: (1, 1), 2: (3, 1), 3: (5, 1), 4: (7, 1), 5: (1, 2)}
-    for k, v in slopes.items():
-        pt2_answer_list.append(part_2(v[0], v[1]))
+    slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
+    for s in slopes:
+        pt2_answer_list.append(part_2(s[0], s[1]))
     print(pt2_answer_list)
     pt2_answer = 1
     for answ in pt2_answer_list:
