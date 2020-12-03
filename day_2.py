@@ -63,7 +63,37 @@ def part_2():
                 matches.append(item)
     return len(matches)
 
+# Adding another solution I found for reference
+
+
+pat = re.compile(r'(\d+)-(\d+) (\w): (\w*)')
+
+
+def parse_line(line):
+    low, high, char, pw = re.match(pat, line).groups()
+    return int(low), int(high), char, pw
+
+
+def part_1_alt():
+    count = 0
+    for item in data:
+        low, high, char, pw = parse_line(item)
+        if pw.count(char) in range(low, high + 1):
+            count += 1
+    return count
+
+
+def part_2_alt():
+    count = 0
+    for item in data:
+        low, high, char, pw = parse_line(item)
+        if (pw[low - 1] == char) != (pw[high - 1] == char):
+            count += 1
+    return count
+
 
 if __name__ == '__main__':
     print(part_1())
     print(part_2())
+    print(part_1_alt())
+    print(part_2_alt())
