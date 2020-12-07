@@ -20,7 +20,7 @@ def part_1():
 
 
 def testing_part_2():
-    with open('testing part 2.txt', 'w') as f:
+    with open(os.path.join('Tests', 'day 2 part 2.txt', 'w')) as f:
         matches = []
         for item in data[:10]:
             f.write(item + '\n')
