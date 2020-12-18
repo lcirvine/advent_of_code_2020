@@ -1,14 +1,13 @@
 import os
 
 with open(os.path.join('Inputs', 'day_10.txt')) as f:
-    adapters = f.read().split('\n')
+    adapters = list(map(int, f.read().split('\n')))
 
-adapters = [int(a) for a in adapters]
 # adding 0 for the charging outlet
 adapters.append(0)
-adapters.sort()
 # adding +3 to last adapter for device
-adapters.append(adapters[-1] + 3)
+adapters.append(max(adapters) + 3)
+adapters.sort()
 
 
 def part_1():
@@ -19,13 +18,16 @@ def part_1():
 
 
 def part_2():
-    adapt_dict = {}
-    for x in adapters:
-        adapt_dict[x] = [y for y in adapters if y in range(x + 1, x + 4)]
-    paths = []
-
+    dp = [1]
+    for i in range(1, len(adapters)):
+        ans = 0
+        for j in range(i):
+            if adapters[j] + 3 >= adapters[i]:
+                ans += dp[j]
+        dp.append(ans)
+    return dp[-1]
 
 
 if __name__ == '__main__':
     print(part_1())
-    # print(part_2())
+    print(part_2())
