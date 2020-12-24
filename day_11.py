@@ -123,7 +123,6 @@ class SeatMap:
         df_comp = pd.merge(self.df, new_df, how='outer', indicator=True)
         diffs = df_comp.loc[df_comp['_merge'] == 'left_only', '_merge'].tolist()
         if len(diffs) == 0 or (max_rounds is not None and self.rounds == max_rounds):
-            new_df.to_csv(os.path.join('day_11_test.csv'))
             return self.df
         else:
             self.df = new_df
